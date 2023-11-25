@@ -25,7 +25,7 @@ const Navbar = () => {
                   <HiBars3 className="text-2xl md:text-3xl cursor-pointer" />
                 </label>
               </div>
-              <div className="drawer-side">
+              <div className="drawer-side z-20">
                 <label
                   htmlFor="my-drawer"
                   aria-label="close sidebar"

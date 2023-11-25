@@ -7,7 +7,7 @@ export default {
         "primary-color": "#B31312",
         "secondary-color": "#2B2A4C",
         "title-color": "#000000",
-        "desc-color": "#CDCDCD",
+        "desc-color": "#767676",
         "border-color": "#D1D1D1",
       },
 

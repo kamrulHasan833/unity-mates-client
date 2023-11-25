@@ -1,6 +1,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import Header from "./Layouts/Header";
 function App() {
   useEffect(() => {
@@ -9,6 +10,8 @@ function App() {
   return (
     <div className="font-inter">
       <Header />
+
+      <Outlet />
     </div>
   );
 }

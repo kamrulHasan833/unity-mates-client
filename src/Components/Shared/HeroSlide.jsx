@@ -5,7 +5,13 @@ const HeroSlide = ({ slide }) => {
   const { image, title, moto, path, btn_text } = slide;
   return (
     <div className="relative">
-      <img src={image} alt="" data-aos="zoom-out" data-aos-duration="2000" />
+      <img
+        src={image}
+        alt=""
+        className="w-full"
+        data-aos="zoom-out"
+        data-aos-duration="2000"
+      />
       <div className="absolute top-0 left-0 flex w-full h-full justify-center items-center bg-black bg-opacity-30">
         <div>
           {" "}
