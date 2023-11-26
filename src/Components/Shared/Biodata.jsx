@@ -28,7 +28,7 @@ const Biodata = ({ biodata }) => {
           <h3 className="font-semibold capitalize text-desc-color">
             Biodata id: <span className="font-normal">{biodata_id}</span>
           </h3>
-          <h3 className="font-semibold capitalize text-3xl text-orange-400">
+          <h3 className="font-semibold capitalize text-3xl  text-orange-400">
             {member_type === "premium" && <MdOutlineWorkspacePremium />}
           </h3>
         </div>
