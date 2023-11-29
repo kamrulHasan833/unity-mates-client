@@ -1,9 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 // import required modules
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import HeroSlide from "../Shared/HeroSlide";

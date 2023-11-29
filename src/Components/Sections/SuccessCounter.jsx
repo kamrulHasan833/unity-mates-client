@@ -5,7 +5,6 @@ import SuccessCount from "../Shared/SuccessCount";
 const SuccessCouters = () => {
   const { sizes, isLoading } = useDocumentSizes();
 
-  console.log(sizes, isLoading);
   return (
     <section>
       <SectionWrapper>

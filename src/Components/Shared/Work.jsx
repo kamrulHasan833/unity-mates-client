@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Work = ({ work }) => {
   const { icon, title, btn_text, path, description } = work;
-  console.log(work);
+
   return (
     <div className="border border-color p-6 text-center cursor-pointer">
       <div className="flex   justify-center text-5xl md:text-7xl text-orange-400 mb-6">

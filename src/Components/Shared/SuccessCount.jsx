@@ -3,7 +3,7 @@ import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 const SuccessCount = ({ count }) => {
   const { size, title } = count;
-  console.log(count);
+
   return (
     <div className=" text-center bg-secondary-color text-white p-6 ">
       <VisibilitySensor>

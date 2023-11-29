@@ -1,15 +1,19 @@
 import { HiBars3 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import NavItem from "../Shared/NavItem";
+import NavbarEnd from "../Shared/NavbarEnd";
 import SectionWrapper from "../Shared/SectionWrapper";
 const Navbar = () => {
+  const { user } = useAuth();
+
   const items = (
     <>
       <NavItem path="/" name="Home" />
       <NavItem path="/biodatas" name="Biodatas" />
       <NavItem path="/about" name="About" />
       <NavItem path="/contact-us" name="Contact Us" />
-      <NavItem path="/dashboard" name="dashboard" />
+      {user && <NavItem path="/dashboard" name="dashboard" />}
     </>
   );
   return (
@@ -50,7 +54,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 gap-1">{items}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <NavbarEnd />
         </div>
       </div>
     </SectionWrapper>
