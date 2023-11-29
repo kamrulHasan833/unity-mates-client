@@ -6,7 +6,7 @@ const useIsAdminOrPremium = () => {
   const { user, loading } = useAuth();
 
   const isFetchStart = !loading && user?.email ? true : false;
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["is-admin"],
     enabled: isFetchStart,
     queryFn: async () => {
@@ -17,7 +17,7 @@ const useIsAdminOrPremium = () => {
     },
   });
 
-  return data;
+  return { ...data, isLoading };
 };
 
 export default useIsAdminOrPremium;

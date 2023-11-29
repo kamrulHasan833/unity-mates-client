@@ -2,12 +2,16 @@ import PropTypes from "prop-types";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { Link } from "react-router-dom";
 import PaymentModal from "../../Layouts/PaymentModal";
+import useAlert from "../../hooks/useAlert";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useIsAdminOrPremium from "../../hooks/useIsAdminOrPremium";
+import useSingleBiodataByEmail from "../../hooks/useSingleBiodataByEmail";
 import SectionHeader from "../Shared/SectionHeader";
-
 const BiodataDetailsLeft = ({ biodata }) => {
+  const alert = useAlert();
+  const axiosPrivate = useAxiosPrivate();
   const data = useIsAdminOrPremium();
-
+  const { biodata: myBiodata } = useSingleBiodataByEmail();
   const { isPremium } = data ? data : {};
 
   const {
@@ -34,13 +38,36 @@ const BiodataDetailsLeft = ({ biodata }) => {
     profile_image,
   } = biodata;
   const isPremiumMember = member_type === "premium";
+  const handleAddToFavourite = async () => {
+    const payload = {
+      name,
+      biodata_id,
+      self_biodata_id: myBiodata?.biodata_id,
+      permanent_address: permanent_division_name,
+      occupation,
+    };
 
+    try {
+      const res = await axiosPrivate.post(
+        "/unity-mates/v1/favourites",
+        payload
+      );
+
+      if (res.data._id) {
+        alert(`You have added to favourite successfully!`, "success");
+      }
+    } catch (err) {
+      if (err) {
+        alert(`Added to favourite failed!`, "error");
+      }
+    }
+  };
   return (
     <section className="pb-14 md:pb-20">
       <SectionHeader title="Biodata details" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
-          <img src={profile_image} alt="" />
+          <img src={profile_image} alt="" className="w-full" />
         </div>
         <div className="space-y-1">
           <div className="flex items-center gap-2 mb-1">
@@ -118,7 +145,10 @@ const BiodataDetailsLeft = ({ biodata }) => {
             </>
           )}
           <div className="flex flex-col justify-center  gap-4 pt-10">
-            <button className="text-sm md:text-base text-white bg-primary-color capitalize hover:bg-secondary-color px-6 md:px-8 py-1 md:py-2 rounded-full ">
+            <button
+              className="text-sm md:text-base text-white bg-primary-color capitalize hover:bg-secondary-color px-6 md:px-8 py-1 md:py-2 rounded-full "
+              onClick={handleAddToFavourite}
+            >
               add to favourite
             </button>
             {!isPremium && (
