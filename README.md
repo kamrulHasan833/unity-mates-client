@@ -1,8 +1,16 @@
-# React + Vite
+# Unity Mates
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [Project Live Link](https://unity-mates.web.app/)
 
-Currently, two official plugins are available:
+Click here to see project demo: [https://unity-mates.web.app/](https://unity-mates.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+###### The five features of my project are given below:
+
+- This website is choosing life partner. User can create profile and see the others profile.
+- Full MERN technology was used to develope it;
+- Singed up can add biodata , get other contact info by paying a amound, her or his profile more much moder functionalities;
+- It has, admin panel and user dashboard and .
+- It has 6 section on home page. They are header, heo slider, Premium memver, working process, success storis like review of user and footer.
+- It has payment getway syster integreted, jwt authentication on server and also ensure firebase athentication system to user signup an signin .
+
+Besides this it has more modenr functionality. Thanks.
