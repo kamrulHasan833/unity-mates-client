@@ -8,7 +8,7 @@ const StoryModal = ({ story }) => {
     success_story,
     reviews,
   } = story;
-  console.log(story);
+
   return (
     <>
       <dialog id="my_modal_1" className="modal">

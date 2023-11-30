@@ -7,10 +7,10 @@ import useSuccessStories from "../../../hooks/useSuccessStories";
 
 const SeccessStoryPage = () => {
   const { successStories, isLoading } = useSuccessStories();
-  console.log(successStories);
+
   const [index, setIndex] = useState(0);
   const [story, setStory] = useState(successStories[index]);
-  console.log(story);
+
   return (
     <SectionWrapperSmall>
       <SectionHeader title="success stories" />
