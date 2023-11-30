@@ -5,22 +5,21 @@ const SuccessCount = ({ count }) => {
   const { size, title } = count;
 
   return (
-    <div className=" text-center bg-secondary-color text-white p-6 ">
+    <div className=" text-center bg-secondary-color text-white p-10 ">
       <VisibilitySensor>
         {({ isVisible }) => (
-          <div>
+          <div className="flex flex-col gap-3 ">
             {isVisible ? (
-              <CountUp start={0} end={size} duration={1} suffix="+">
-                {({ countUpRef }) => (
-                  <div>
-                    <span className="text-4xl font-bold" ref={countUpRef} />
-                  </div>
-                )}
-              </CountUp>
+              <CountUp
+                end={size}
+                duration={3}
+                className="text-6xl"
+                suffix="+"
+              ></CountUp>
             ) : (
               ""
             )}
-            <span className="capitalize">{title} </span>
+            <span className="capitalize ">{title} </span>
           </div>
         )}
       </VisibilitySensor>

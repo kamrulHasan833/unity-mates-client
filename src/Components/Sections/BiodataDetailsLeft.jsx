@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { Link } from "react-router-dom";
-import PaymentModal from "../../Layouts/PaymentModal";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -165,7 +164,6 @@ const BiodataDetailsLeft = ({ biodata }) => {
           </div>
         </div>
       </div>
-      <PaymentModal />
     </section>
   );
 };

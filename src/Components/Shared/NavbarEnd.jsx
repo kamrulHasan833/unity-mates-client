@@ -76,7 +76,7 @@ const NavbarEnd = () => {
               </div>
             </li>
             <li>
-              <Link className="text-center block" to="/dashbord">
+              <Link className="text-center block" to="/dashboard">
                 Dashbord
               </Link>
             </li>

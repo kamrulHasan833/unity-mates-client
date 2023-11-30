@@ -39,7 +39,7 @@ const UserHome = () => {
         <SectionHeader title="Overall Statistics" />
         {isLoading ? (
           <p>loading...</p>
-        ) : !isLoading && !stats ? (
+        ) : !isLoading && stats?.length === 0 ? (
           <p>no data found</p>
         ) : !isLoading && stats ? (
           <>
@@ -47,7 +47,7 @@ const UserHome = () => {
             <PieChartAdmin stats={sizes} />
           </>
         ) : (
-          <p>An error occurs</p>
+          ""
         )}
       </SectionWrapperSmall>
     </section>

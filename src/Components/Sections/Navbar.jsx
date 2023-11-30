@@ -12,7 +12,7 @@ const Navbar = () => {
       <NavItem path="/" name="Home" />
       <NavItem path="/biodatas" name="Biodatas" />
       <NavItem path="/about" name="About" />
-      <NavItem path="/contact-us" name="Contact Us" />
+      <NavItem path="/contact" name="Contact Us" />
       {user && <NavItem path="/dashboard" name="dashboard" />}
     </>
   );
@@ -35,7 +35,7 @@ const Navbar = () => {
                   aria-label="close sidebar"
                   className="drawer-overlay"
                 ></label>
-                <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content capitalize">
                   {/* Sidebar content here */}
                   {items}
                 </ul>
@@ -51,7 +51,9 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-1">{items}</ul>
+          <ul className="menu menu-horizontal px-1 gap-1 capitalize">
+            {items}
+          </ul>
         </div>
         <div className="navbar-end">
           <NavbarEnd />

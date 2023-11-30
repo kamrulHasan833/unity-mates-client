@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Checkout from "../Components/Sections/Checkout";
-import SuccessStories from "../Components/Sections/SuccessStories";
 import About from "../Pages/About";
 import BiodataDetails from "../Pages/BiodataDetails";
 import Biodatas from "../Pages/Biodatas";
@@ -9,6 +8,7 @@ import ContactUs from "../Pages/ContactUs";
 import ApproveCotactRequests from "../Pages/Dashboard/Admin/ApproveCotactRequests";
 import ApprovePremiumRequests from "../Pages/Dashboard/Admin/ApprovePremiumRequests";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import SuccesStoryPage from "../Pages/Dashboard/Admin/SeccessStoryPage";
 import Landing from "../Pages/Dashboard/Common/Landing";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import EditBiodata from "../Pages/Dashboard/User/EditBiodata";
@@ -157,7 +157,7 @@ const router = createBrowserRouter([
         path: "success-stories",
         element: (
           <AdminRoute>
-            <SuccessStories />
+            <SuccesStoryPage />
           </AdminRoute>
         ),
       },
