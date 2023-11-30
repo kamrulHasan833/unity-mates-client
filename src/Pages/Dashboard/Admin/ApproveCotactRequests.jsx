@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
-import SectionWrapper from "../../../Components/Shared/SectionWrapper";
+import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
 import useAlert from "../../../hooks/useAlert";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 const ApproveCotactRequests = () => {
@@ -35,7 +35,7 @@ const ApproveCotactRequests = () => {
   };
   return (
     <section>
-      <SectionWrapper>
+      <SectionWrapperSmall>
         <SectionHeader title="Approve Contact request" />
 
         {/* table */}
@@ -90,7 +90,7 @@ const ApproveCotactRequests = () => {
             </Table>
           </div>
         )}
-      </SectionWrapper>
+      </SectionWrapperSmall>
     </section>
   );
 };

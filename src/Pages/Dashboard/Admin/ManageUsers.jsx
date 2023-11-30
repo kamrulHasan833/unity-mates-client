@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
-import SectionWrapper from "../../../Components/Shared/SectionWrapper";
+import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
 import useAlert from "../../../hooks/useAlert";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 const ManageUsers = () => {
@@ -32,7 +32,7 @@ const ManageUsers = () => {
       }
     } catch (err) {
       if (err) {
-        alert("Made premium failed!", "err");
+        alert("Made premium failed!", "error");
       }
     }
   };
@@ -55,7 +55,7 @@ const ManageUsers = () => {
   };
   return (
     <section>
-      <SectionWrapper>
+      <SectionWrapperSmall>
         <SectionHeader title="manage users" />
         <div className="overflow-x-auto">
           {isLoading ? (
@@ -116,11 +116,9 @@ const ManageUsers = () => {
             </Table>
           )}
         </div>
-      </SectionWrapper>
+      </SectionWrapperSmall>
     </section>
   );
 };
 
 export default ManageUsers;
-
-("use client");

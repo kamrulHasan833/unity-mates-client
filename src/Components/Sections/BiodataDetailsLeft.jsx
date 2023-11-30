@@ -3,11 +3,13 @@ import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { Link } from "react-router-dom";
 import PaymentModal from "../../Layouts/PaymentModal";
 import useAlert from "../../hooks/useAlert";
+import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useIsAdminOrPremium from "../../hooks/useIsAdminOrPremium";
 import useSingleBiodataByEmail from "../../hooks/useSingleBiodataByEmail";
 import SectionHeader from "../Shared/SectionHeader";
 const BiodataDetailsLeft = ({ biodata }) => {
+  const { user } = useAuth();
   const alert = useAlert();
   const axiosPrivate = useAxiosPrivate();
   const data = useIsAdminOrPremium();
@@ -45,6 +47,7 @@ const BiodataDetailsLeft = ({ biodata }) => {
       self_biodata_id: myBiodata?.biodata_id,
       permanent_address: permanent_division_name,
       occupation,
+      email: user?.email,
     };
 
     try {

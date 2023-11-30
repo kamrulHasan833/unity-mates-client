@@ -7,7 +7,7 @@ const NavbarEnd = () => {
   const alert = useAlert();
   const { user, loading, logout } = useAuth();
   const { displayName, photoURL } = user ? user : {};
-  console.log(photoURL);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {

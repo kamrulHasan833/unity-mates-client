@@ -39,7 +39,7 @@ const MyContactRequests = () => {
       }
     } catch (err) {
       if (err) {
-        alert("Request deletation failed!", "err");
+        alert("Request deletation failed!", "error");
       }
     }
   };

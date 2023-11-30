@@ -9,6 +9,7 @@ const Dashboard = () => {
         <div className="lg:flex">
           <div className="flex-grow-0">
             <Sidebar />
+            <div className="w-[320px] hidden xl:block h-screen"></div>
           </div>
           <div className="flex-grow">
             <Outlet />

@@ -1,4 +1,6 @@
 import { CiEdit, CiHome, CiLogout, CiUser } from "react-icons/ci";
+import { GiLifeSupport } from "react-icons/gi";
+
 import { GrUserAdmin } from "react-icons/gr";
 import {
   MdDashboard,
@@ -7,6 +9,7 @@ import {
   MdOutlineApproval,
   MdOutlineContactEmergency,
   MdOutlineFavorite,
+  MdOutlineFestival,
 } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useIsAdminOrPremium from "../hooks/useIsAdminOrPremium";
@@ -57,6 +60,12 @@ const Sidebar = () => {
       path: `${mainPath}/favourite-biodatas`,
       icon: <MdOutlineFavorite className="text-xl md:text-2xl" />,
     },
+    {
+      id: 6,
+      name: "Got Merried",
+      path: `${mainPath}/got-merried`,
+      icon: <MdOutlineFestival className="text-xl md:text-2xl" />,
+    },
   ];
   const adminItems = [
     {
@@ -82,6 +91,12 @@ const Sidebar = () => {
       name: "approved contact request",
       path: `${mainPath}/approvedContactRequest`,
       icon: <MdOutlineContactEmergency className="text-xl md:text-2xl" />,
+    },
+    {
+      id: 5,
+      name: "success stories",
+      path: `${mainPath}/success-stories`,
+      icon: <GiLifeSupport className="text-xl md:text-2xl" />,
     },
   ];
 
@@ -152,7 +167,7 @@ const Sidebar = () => {
           aria-label="close sidebar"
           className="drawer-overlay opacity-0"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-secondary-color text-base-content font-cinzel ">
+        <ul className="menu p-4 w-80 min-h-full bg-secondary-color text-base-content font-cinzel xl:fixed">
           {/* Sidebar content here */}
           <li>
             <Link

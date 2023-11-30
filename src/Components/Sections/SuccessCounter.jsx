@@ -11,7 +11,7 @@ const SuccessCouters = () => {
         <SectionHeader title="success counter" />
         {isLoading ? (
           <p>loading..</p>
-        ) : !isLoading && sizes.length === 0 ? (
+        ) : !isLoading && !sizes.length ? (
           <p>no data</p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">

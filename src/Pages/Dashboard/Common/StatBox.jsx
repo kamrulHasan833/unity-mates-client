@@ -12,7 +12,6 @@ const StatBox = ({ stat }) => {
   const isFemaleBiodata = title === "female biodatas" ? true : false;
   const isPremiumBiodata = title === "premium biodatas" ? true : false;
   const isMarriage = title === "marriages";
-  console.log(title);
 
   return (
     <div className="stat shadow-lg capitalize">

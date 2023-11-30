@@ -5,7 +5,11 @@ const useSingleBiodataByEmail = () => {
   const { user, loading } = useAuth();
   const email = user?.email;
   const axiosPrivate = useAxiosPrivate();
-  const { data: biodata, isLoading } = useQuery({
+  const {
+    data: biodata,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["biodata"],
     enabled: !loading && email ? true : false,
     queryFn: async () => {
@@ -15,7 +19,8 @@ const useSingleBiodataByEmail = () => {
       return res?.data;
     },
   });
-  return { biodata, isLoading };
+
+  return { biodata, isLoading, refetch };
 };
 
 export default useSingleBiodataByEmail;

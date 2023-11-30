@@ -18,7 +18,7 @@ const works = [
     description:
       "Every user needs to create a profile to use the website. Then users have to find the biodata of others. Create your profile to showcase your information, interests, and preferences.",
     btn_text: "create profile",
-    path: "/create-profile",
+    path: "/signup",
     "btn-text": "Create Profile",
   },
   {
@@ -28,7 +28,7 @@ const works = [
     description:
       "Add your biodata with essential details. Share your personal information, educational background, and work experience to provide a comprehensive overview of yourself.",
     btn_text: "add biodata",
-    path: "/add-biodata",
+    path: "/dashboard/edit-biodata",
     "btn-text": "Add Biodata",
   },
   {
@@ -38,7 +38,7 @@ const works = [
     description:
       "Discover and explore biodata from a diverse community. Find matches, connect with like-minded individuals, and explore potential connections based on shared interests.",
     btn_text: "explore biodata",
-    path: "/explore-biodata",
+    path: "/biodatas",
     "btn-text": "Explore Biodata",
   },
   {
@@ -48,7 +48,7 @@ const works = [
     description:
       "Initiate contact by sending requests to individuals who catch your interest. Express your interest and start a conversation to get to know each other better.",
     btn_text: "choose favourite",
-    path: "/contact-request",
+    path: "/biodatas",
     "btn-text": "Send Request",
   },
   {
@@ -58,7 +58,7 @@ const works = [
     description:
       "Upgrade to premium services for enhanced features and benefits. Unlock exclusive privileges to optimize your experience and increase your chances of finding meaningful connections.",
     btn_text: "view biodata",
-    path: "/premium-request",
+    path: "/dashboard/view-biodata",
     "btn-text": "Upgrade Now",
   },
   {
@@ -68,7 +68,7 @@ const works = [
     description:
       "Reach out to us for any inquiries or assistance. Our dedicated support team is here to help you. Feel free to contact us with your questions or feedback.",
     btn_text: "contact us",
-    path: "/contact-us",
+    path: "/contact",
     "btn-text": "Contact Us",
   },
 ];
@@ -82,7 +82,7 @@ const HowWebsiteWorks = () => {
           subtitle="Working process of this website"
         ></SectionHeader>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {works.map((work) => (
             <Work key={work.id} work={work} />
           ))}
