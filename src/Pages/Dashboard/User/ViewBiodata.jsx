@@ -1,4 +1,5 @@
 import { MdOutlineWorkspacePremium } from "react-icons/md";
+import Swal from "sweetalert2";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
 import useAlert from "../../../hooks/useAlert";
@@ -34,33 +35,43 @@ const ViewBiodata = () => {
   } = biodata ? biodata : {};
 
   const isPremium = member_type === "premium";
-  const handlePremiumRequest = async (e) => {
+  const handlePremiumRequest = (e) => {
     e.preventDefault();
     const payload = {
       ...biodata,
       premium_request_status: "pending",
     };
-    try {
-      const { data: result } = await axiosPrivate.post(
-        "/unity-mates/v1/biodatas",
-        payload
-      );
 
-      const isUpdate = result.modifiedCount > 0;
+    Swal.fire({
+      title: "Are you sure?",
+      text: "To make your biodata premium, click yes!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2B2A4C",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPrivate
+          .post("/unity-mates/v1/biodatas", payload)
+          .then(({ data: result }) => {
+            const isUpdate = result.modifiedCount > 0;
 
-      if (isUpdate) {
-        alert(`You have requested successfully!`, "success");
-        refetch();
-      } else {
-        alert(`You have alreadiy requested!`, "error");
-        refetch();
-        refetch();
+            if (isUpdate) {
+              alert(`You have requested successfully!`, "success");
+              refetch();
+            } else {
+              alert(`You have alreadiy requested!`, "error");
+              refetch();
+            }
+          })
+          .catch((err) => {
+            if (err) {
+              alert(`Your  request failed!`, "error");
+            }
+          });
       }
-    } catch (err) {
-      if (err) {
-        alert(`Your  request failed!`, "error");
-      }
-    }
+    });
   };
 
   return (

@@ -8,8 +8,7 @@ import useSuccessStories from "../../../hooks/useSuccessStories";
 const SeccessStoryPage = () => {
   const { successStories, isLoading } = useSuccessStories();
 
-  const [index, setIndex] = useState(0);
-  const [story, setStory] = useState(successStories[index]);
+  const [story, setStory] = useState(successStories?.[0]);
 
   return (
     <SectionWrapperSmall>
@@ -53,7 +52,14 @@ const SeccessStoryPage = () => {
                       <button
                         onClick={() => {
                           document.getElementById("my_modal_1").showModal();
-                          setIndex(idx);
+                          setStory({
+                            _id,
+                            self_biodata_id,
+                            partner_biodata_id,
+                            couple_image,
+                            success_story,
+                            reviews,
+                          });
                         }}
                         className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1"
                       >
@@ -67,7 +73,7 @@ const SeccessStoryPage = () => {
           </Table>
         )}
       </div>
-      <StoryModal story={{}} />
+      <StoryModal story={story} />
     </SectionWrapperSmall>
   );
 };

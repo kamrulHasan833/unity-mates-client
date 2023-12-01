@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
+import Swal from "sweetalert2";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
 import useAlert from "../../../hooks/useAlert";
@@ -25,21 +26,34 @@ const FavouriteBiodatas = () => {
   });
 
   // handle delete favourite
-  const handleDelete = async (id) => {
-    try {
-      const res = await axiosPrivate.delete(
-        `/unity-mates/v1/favourites?id=${id}`
-      );
-      const isSuccess = res?.data?.deletedCount > 0;
-      if (isSuccess) {
-        refetch();
-        alert(`Favourite biodata deleted successfully!`, "success");
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "To delete favourite biodata, click yes!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2B2A4C",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPrivate
+          .delete(`/unity-mates/v1/favourites?id=${id}`)
+
+          .then((res) => {
+            const isSuccess = res?.data?.deletedCount > 0;
+            if (isSuccess) {
+              refetch();
+              alert(`Favourite biodata deleted successfully!`, "success");
+            }
+          })
+          .catch((err) => {
+            if (err) {
+              alert("Request deletation failed!", "error");
+            }
+          });
       }
-    } catch (err) {
-      if (err) {
-        alert("Request deletation failed!", "error");
-      }
-    }
+    });
   };
   return (
     <section>

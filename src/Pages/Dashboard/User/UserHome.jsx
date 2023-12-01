@@ -22,6 +22,7 @@ const UserHome = () => {
       ? [{ data: expense?.expense, title: expense?.title }, ...statsPartial]
       : null;
 
+  const statsForPie = stats?.slice(1, 6);
   useEffect(() => {
     if (email) {
       axiosPrivate
@@ -44,7 +45,7 @@ const UserHome = () => {
         ) : !isLoading && stats ? (
           <>
             <StatsBoxes stats={stats} />
-            <PieChartAdmin stats={sizes} />
+            <PieChartAdmin stats={statsForPie} />
           </>
         ) : (
           ""

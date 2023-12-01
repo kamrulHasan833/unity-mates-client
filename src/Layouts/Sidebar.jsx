@@ -14,6 +14,7 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useIsAdminOrPremium from "../hooks/useIsAdminOrPremium";
 
+import Headroom from "react-headroom";
 import { FaUsers, FaUsersViewfinder } from "react-icons/fa6";
 import { FcAbout } from "react-icons/fc";
 import { RiContactsLine } from "react-icons/ri";
@@ -34,37 +35,37 @@ const Sidebar = () => {
       id: 1,
       name: "user dashboard",
       path: `${mainPath}`,
-      icon: <CiUser className="text-2xl md:text-2xl" />,
+      icon: <CiUser className="text-2xl md:text-2xl mr-3" />,
     },
     {
       id: 2,
       name: "edit biodata",
       path: `${mainPath}/edit-biodata`,
-      icon: <CiEdit className="text-xl md:text-2xl" />,
+      icon: <CiEdit className="text-base md:text-xl" />,
     },
     {
       id: 3,
       name: "view biodata",
       path: `${mainPath}/view-biodata`,
-      icon: <FaUsersViewfinder className="text-xl md:text-2xl" />,
+      icon: <FaUsersViewfinder className="text-base md:text-xl" />,
     },
     {
       id: 4,
       name: "My contact requests",
       path: `${mainPath}/my-contact-request`,
-      icon: <RiContactsLine className="text-xl md:text-2xl" />,
+      icon: <RiContactsLine className="text-base md:text-xl" />,
     },
     {
       id: 5,
       name: "favourite biodatas",
       path: `${mainPath}/favourite-biodatas`,
-      icon: <MdOutlineFavorite className="text-xl md:text-2xl" />,
+      icon: <MdOutlineFavorite className="text-base md:text-xl" />,
     },
     {
       id: 6,
       name: "Got Merried",
       path: `${mainPath}/got-merried`,
-      icon: <MdOutlineFestival className="text-xl md:text-2xl" />,
+      icon: <MdOutlineFestival className="text-base md:text-xl" />,
     },
   ];
   const adminItems = [
@@ -72,31 +73,31 @@ const Sidebar = () => {
       id: 1,
       name: "admin dashboard",
       path: `${mainPath}`,
-      icon: <GrUserAdmin className="text-2xl md:text-2xl" />,
+      icon: <GrUserAdmin className=" text-base md:text-xl  " />,
     },
     {
       id: 2,
       name: "Manage users",
       path: `${mainPath}/manage`,
-      icon: <MdManageAccounts className="text-xl md:text-2xl" />,
+      icon: <MdManageAccounts className="text-base md:text-xl" />,
     },
     {
       id: 3,
       name: "approved premium",
       path: `${mainPath}/approvedPremium`,
-      icon: <MdOutlineApproval className="text-xl md:text-2xl" />,
+      icon: <MdOutlineApproval className="text-base md:text-xl" />,
     },
     {
       id: 4,
       name: "approved contact request",
       path: `${mainPath}/approvedContactRequest`,
-      icon: <MdOutlineContactEmergency className="text-xl md:text-2xl" />,
+      icon: <MdOutlineContactEmergency className="text-base md:text-xl" />,
     },
     {
       id: 5,
       name: "success stories",
       path: `${mainPath}/success-stories`,
-      icon: <GiLifeSupport className="text-xl md:text-2xl" />,
+      icon: <GiLifeSupport className="text-base md:text-xl" />,
     },
   ];
 
@@ -105,25 +106,25 @@ const Sidebar = () => {
       id: 1,
       name: "home",
       path: `/`,
-      icon: <CiHome className="text-2xl md:text-2xl" />,
+      icon: <CiHome className="text-xl" />,
     },
     {
       id: 2,
       name: "biodatas",
       path: `/biodatas`,
-      icon: <FaUsers className="text-xl md:text-2xl" />,
+      icon: <FaUsers className="text-base md:text-xl" />,
     },
     {
       id: 3,
       name: "about us",
       path: `/about`,
-      icon: <FcAbout className="text-xl md:text-2xl" />,
+      icon: <FcAbout className="text-base md:text-xl" />,
     },
     {
       id: 4,
       name: "contact",
       path: `/contact`,
-      icon: <MdEmail className="text-xl md:text-2xl" />,
+      icon: <MdEmail className="text-base md:text-xl" />,
     },
   ];
 
@@ -158,7 +159,9 @@ const Sidebar = () => {
           className=" btn bg-transparent border-none mt-6 ml-6 md:ml-10 drawer-button xl:hidden"
           title="Open Dashboard"
         >
-          <MdDashboard className="text-3xl md:text-4xl text-secondary-color" />
+          <Headroom style={{ zIndex: 200 }}>
+            <MdDashboard className="text-3xl md:text-4xl text-secondary-color bg-transparent" />
+          </Headroom>
         </label>
       </div>
       <div className="drawer-side z-20">
@@ -242,7 +245,7 @@ const Sidebar = () => {
               onClick={handleLogout}
             >
               {" "}
-              <CiLogout className="text-xl md:text-2xl" /> Logout
+              <CiLogout className="text-base md:text-xl" /> Logout
             </button>
           </li>
         </ul>

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
+import { Cell, Legend, Pie, PieChart } from "recharts";
 
 const COLORS = ["#B31312", "#00C49F", "#FFBB28", "#2B2A4C", "#0088FE"];
 
@@ -12,8 +12,9 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
+  index,
 }) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const radius = innerRadius + (outerRadius - innerRadius) * 1.05;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
@@ -21,7 +22,7 @@ const renderCustomizedLabel = ({
     <text
       x={x}
       y={y}
-      fill="white"
+      fill={COLORS[index % COLORS.length]}
       textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
     >
@@ -31,28 +32,31 @@ const renderCustomizedLabel = ({
 };
 
 const PieChartAdmin = ({ stats }) => {
-  const data = stats.map(({ size, title }) => ({ name: size, value: title }));
+  const data = stats.map(({ data, title }) => ({ name: title, value: data }));
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart>
+    <div className="flex justify-center w-full overflow-x-auto">
+      <PieChart width={500} height={500}>
         <Pie
           data={data}
           cx="50%"
           cy="50%"
           labelLine={false}
           label={renderCustomizedLabel}
-          outerRadius={80}
+          outerRadius={200}
           fill="#8884d8"
           dataKey="value"
         >
           {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell
+              key={`sector-${index}`}
+              fill={COLORS[index % COLORS.length]}
+            />
           ))}
         </Pie>
         <Legend />
       </PieChart>
-    </ResponsiveContainer>
+    </div>
   );
 };
 

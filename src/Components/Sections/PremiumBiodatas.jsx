@@ -16,7 +16,7 @@ const PremiumBiodatas = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/unity-mates/v1/biodatas/query?memberType=premium`
+        `/unity-mates/v1/biodatas/query?memberType=premium&skip=0&&limit=6`
       );
       return res.data;
     },

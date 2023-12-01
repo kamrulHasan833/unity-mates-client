@@ -18,7 +18,7 @@ const AdminHome = () => {
     !isLoading && statsPartial && revenue
       ? [{ data: revenue.revenue, title: revenue.title }, ...statsPartial]
       : null;
-
+  const statsForPie = stats?.filter(({ title }) => title !== "marriages");
   useEffect(() => {
     axiosPrivate
       .get("/unity-mates/v1/requests/revenue")
@@ -39,7 +39,7 @@ const AdminHome = () => {
         ) : !isLoading && stats ? (
           <>
             <StatsBoxes stats={stats} />
-            <PieChartAdmin stats={sizes} />
+            <PieChartAdmin stats={statsForPie} />
           </>
         ) : (
           <p></p>

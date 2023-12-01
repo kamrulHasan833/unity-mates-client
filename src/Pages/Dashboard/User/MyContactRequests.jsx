@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
 import useAlert from "../../../hooks/useAlert";
@@ -29,19 +30,34 @@ const MyContactRequests = () => {
   useEffect(() => {
     refetch();
   }, [email, refetch]);
-  const handleDelete = async (id) => {
-    try {
-      const res = await axiosPrivate.delete(`unity-mates/v1/requests?id=${id}`);
-      const isSuccess = res?.data?.deletedCount > 0;
-      if (isSuccess) {
-        refetch();
-        alert(`Request deleted successfully!`, "success");
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "To delete contact request, click yes!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2B2A4C",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPrivate
+          .delete(`unity-mates/v1/requests?id=${id}`)
+
+          .then((res) => {
+            const isSuccess = res?.data?.deletedCount > 0;
+            if (isSuccess) {
+              refetch();
+              alert(`Request deleted successfully!`, "success");
+            }
+          })
+          .catch((err) => {
+            if (err) {
+              alert("Request deletation failed!", "error");
+            }
+          });
       }
-    } catch (err) {
-      if (err) {
-        alert("Request deletation failed!", "error");
-      }
-    }
+    });
   };
   return (
     <section>
