@@ -2,8 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAlert from "../../../hooks/useAlert";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -61,14 +64,15 @@ const MyContactRequests = () => {
   };
   return (
     <section>
+      <Title title="My Contact Requests" />
       <SectionWrapperSmall>
         <SectionHeader title="my contact requests" />
-        <div className="overflow-x-auto">
-          {isLoading ? (
-            <p>loading..</p>
-          ) : !isLoading && !requests.length ? (
-            <p>no request</p>
-          ) : (
+        {isLoading ? (
+          <LoadingSpiner />
+        ) : !isLoading && !requests.length ? (
+          <Nodata />
+        ) : (
+          <div className="overflow-x-auto">
             <Table hoverable>
               <Table.Head>
                 <Table.HeadCell></Table.HeadCell>
@@ -111,7 +115,7 @@ const MyContactRequests = () => {
                         {" "}
                         <button
                           onClick={() => handleDelete(_id)}
-                          className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1 capitalize"
+                          className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1 capitalize min-w-[120px]"
                         >
                           delete
                         </button>
@@ -121,8 +125,8 @@ const MyContactRequests = () => {
                 )}
               </Table.Body>
             </Table>
-          )}
-        </div>
+          </div>
+        )}
       </SectionWrapperSmall>
     </section>
   );

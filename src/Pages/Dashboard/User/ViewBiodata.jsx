@@ -1,7 +1,10 @@
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 import Swal from "sweetalert2";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAlert from "../../../hooks/useAlert";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useSingleBiodataByEmail from "../../../hooks/useSingleBiodataByEmail";
@@ -76,278 +79,288 @@ const ViewBiodata = () => {
 
   return (
     <section>
+      <Title title="View Biodata" />
       <SectionWrapperSmall>
         <SectionHeader title="View Biodata" />
         {isLoading ? (
-          <p>loading...</p>
+          <LoadingSpiner />
         ) : !isLoading && !biodata ? (
-          <p>No Biodata</p>
+          <Nodata />
         ) : (
-          <form className="card-body p-0">
-            {isPremium && (
-              <div className=" flex w-full justify-end items-center ">
-                <div>
-                  <MdOutlineWorkspacePremium className="text-4xl text-orange-400" />
+          <>
+            <div className="flex justify-center mb-6 md:mb-10">
+              <img src={profile_image} alt="profile" className="border" />
+            </div>
+            <form className="card-body p-0">
+              {isPremium && (
+                <div className=" flex w-full justify-end items-center ">
+                  <div>
+                    <MdOutlineWorkspacePremium className="text-4xl text-orange-400" />
+                  </div>
+                  <span className=" text-orange-400 font-medium ">Premium</span>
                 </div>
-                <span className=" text-orange-400 font-medium ">Premium</span>
-              </div>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6  ">
-              <div className="form-control ">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">Name</p>
-                </label>
-                <input
-                  defaultValue={name}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control ">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Profile Image URL
-                  </p>
-                </label>
-                <input
-                  defaultValue={profile_image}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    {`Father's`} Name
-                  </p>
-                </label>
-                <input
-                  defaultValue={fathers_name}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    {`Mother's`} Name
-                  </p>
-                </label>
-                <input
-                  defaultValue={mothers_name}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Age (years)
-                  </p>
-                </label>
-                <input
-                  defaultValue={age}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Expected Partner Age (years){" "}
-                  </p>
-                </label>
-                <input
-                  defaultValue={expected_partner_age}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Date of Birth
-                  </p>
-                </label>
-                <input
-                  defaultValue={date_of_birth}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Mobile Number
-                  </p>
-                </label>
-                <input
-                  defaultValue={mobile_number}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Biodata Type
-                  </p>
-                </label>
-                <input
-                  defaultValue={biodata_type}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Occupation
-                  </p>
-                </label>
-                <input
-                  defaultValue={occupation}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Present Division
-                  </p>
-                </label>
-                <input
-                  defaultValue={present_division_name}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Permanent Division
-                  </p>
-                </label>
-                <input
-                  defaultValue={permanent_division_name}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Height
-                  </p>
-                </label>
-                <input
-                  defaultValue={height}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Weight
-                  </p>
-                </label>
-                <input
-                  defaultValue={weight}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Expected Partner Height
-                  </p>
-                </label>
-                <input
-                  defaultValue={expected_partner_height}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Expected Partner Weight
-                  </p>
-                </label>
-                <input
-                  defaultValue={expected_partner_weight}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">Race</p>
-                </label>
-                <input
-                  defaultValue={race}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <p className="label-text text-desc-color font-medium">
-                    Biodata ID
-                  </p>
-                </label>
-                <input
-                  defaultValue={biodata_id}
-                  className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
-                  disabled
-                />
-              </div>
-
-              <div>
-                <div className="form-control">
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6  ">
+                <div className="form-control ">
                   <label className="label">
                     <p className="label-text text-desc-color font-medium">
-                      Email
+                      Name
                     </p>
                   </label>
                   <input
-                    defaultValue={email}
+                    defaultValue={name}
                     className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
                     disabled
                   />
                 </div>
+                <div className="form-control ">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Profile Image URL
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={profile_image}
+                    className="input input-bordered rounded-none  disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      {`Father's`} Name
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={fathers_name}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      {`Mother's`} Name
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={mothers_name}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Age (years)
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={age}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Expected Partner Age (years){" "}
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={expected_partner_age}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Date of Birth
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={date_of_birth}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Mobile Number
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={mobile_number}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Biodata Type
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={biodata_type}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Occupation
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={occupation}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Present Division
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={present_division_name}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Permanent Division
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={permanent_division_name}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Height
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={height}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Weight
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={weight}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Expected Partner Height
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={expected_partner_height}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Expected Partner Weight
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={expected_partner_weight}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Race
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={race}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <p className="label-text text-desc-color font-medium">
+                      Biodata ID
+                    </p>
+                  </label>
+                  <input
+                    defaultValue={biodata_id}
+                    className="input input-bordered rounded-none  capitalize disabled:text-desc-color disabled:cursor-default"
+                    disabled
+                  />
+                </div>
+
+                <div>
+                  <div className="form-control">
+                    <label className="label">
+                      <p className="label-text text-desc-color font-medium">
+                        Email
+                      </p>
+                    </label>
+                    <input
+                      defaultValue={email}
+                      className="input input-bordered rounded-none  disabled:text-desc-color disabled:cursor-default"
+                      disabled
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            {biodata && (
-              <div className="form-control  mt-10  items-center ">
-                {!isPremium && (
-                  <>
-                    {premium_request_status === "pending" ? (
-                      <button
-                        className="btn btn-primary  font-medium text-base px-10 md:px-14 py-2 rounded-full disabled:text-desc-color"
-                        disabled
-                      >
-                        Pending..
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn-primary  hover:bg-primary-color border-none bg-secondary-color text-white font-medium text-base px-10 md:px-14 py-2 rounded-full"
-                        onClick={handlePremiumRequest}
-                      >
-                        Make Premium{" "}
-                        <MdOutlineWorkspacePremium className="text-xl text-orange-400" />
-                      </button>
-                    )}
-                  </>
-                )}
-              </div>
-            )}
-          </form>
+              {biodata && (
+                <div className="form-control  mt-10  items-center ">
+                  {!isPremium && (
+                    <>
+                      {premium_request_status === "pending" ? (
+                        <button
+                          className="btn btn-primary  font-medium text-base px-10 md:px-14 py-2 rounded-full disabled:text-desc-color"
+                          disabled
+                        >
+                          Pending..
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-primary  hover:bg-primary-color border-none bg-secondary-color text-white font-medium text-base px-10 md:px-14 py-2 rounded-full"
+                          onClick={handlePremiumRequest}
+                        >
+                          Make Premium{" "}
+                          <MdOutlineWorkspacePremium className="text-xl text-orange-400" />
+                        </button>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
+            </form>
+          </>
         )}
       </SectionWrapperSmall>
     </section>

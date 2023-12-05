@@ -1,6 +1,8 @@
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSuccessStories from "../../hooks/useSuccessStories";
+import LoadingSpiner from "../Shared/LoadingSpiner";
+import Nodata from "../Shared/Nodata";
 import SectionHeader from "../Shared/SectionHeader";
 import SectionWrapper from "../Shared/SectionWrapper";
 import SuccessStory from "../Shared/SuccessStory";
@@ -12,9 +14,9 @@ const SuccessStories = () => {
       <SectionWrapper>
         <SectionHeader title="success story" />
         {isLoading ? (
-          <p>loading..</p>
+          <LoadingSpiner />
         ) : !isLoading && !successStories.length ? (
-          <p>no success</p>
+          <Nodata />
         ) : (
           <Swiper
             slidesPerView={1}

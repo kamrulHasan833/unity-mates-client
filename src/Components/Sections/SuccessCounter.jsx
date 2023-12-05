@@ -1,4 +1,6 @@
 import useDocumentSizes from "../../hooks/useDocumentSizes";
+import LoadingSpiner from "../Shared/LoadingSpiner";
+import Nodata from "../Shared/Nodata";
 import SectionHeader from "../Shared/SectionHeader";
 import SectionWrapper from "../Shared/SectionWrapper";
 import SuccessCount from "../Shared/SuccessCount";
@@ -10,9 +12,9 @@ const SuccessCouters = () => {
       <SectionWrapper>
         <SectionHeader title="success counter" />
         {isLoading ? (
-          <p>loading..</p>
+          <LoadingSpiner />
         ) : !isLoading && !sizes.length ? (
-          <p>no data</p>
+          <Nodata />
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {" "}

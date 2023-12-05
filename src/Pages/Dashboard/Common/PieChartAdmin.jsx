@@ -35,7 +35,7 @@ const PieChartAdmin = ({ stats }) => {
   const data = stats.map(({ data, title }) => ({ name: title, value: data }));
 
   return (
-    <div className="flex justify-center w-full overflow-x-auto">
+    <div className="flex justify-center w-full overflow-x-auto capitalize pt-10">
       <PieChart width={500} height={500}>
         <Pie
           data={data}

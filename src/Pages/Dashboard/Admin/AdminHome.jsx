@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useDocumentSize from "../../../hooks/useDocumentSizes";
 import PieChartAdmin from "../Common/PieChartAdmin";
@@ -18,7 +21,7 @@ const AdminHome = () => {
     !isLoading && statsPartial && revenue
       ? [{ data: revenue.revenue, title: revenue.title }, ...statsPartial]
       : null;
-  const statsForPie = stats?.filter(({ title }) => title !== "marriages");
+  const statsForPie = stats?.filter(({ title }) => title !== "total revenue");
   useEffect(() => {
     axiosPrivate
       .get("/unity-mates/v1/requests/revenue")
@@ -30,12 +33,13 @@ const AdminHome = () => {
 
   return (
     <section>
+      <Title title="Admin Home" />
       <SectionWrapperSmall>
         <SectionHeader title="Overall Statistics" />
         {isLoading ? (
-          <p>loading...</p>
+          <LoadingSpiner />
         ) : !isLoading && !stats?.length === 0 ? (
-          <p>no data found</p>
+          <Nodata />
         ) : !isLoading && stats ? (
           <>
             <StatsBoxes stats={stats} />

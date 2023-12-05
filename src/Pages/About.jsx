@@ -2,13 +2,18 @@ import SuccessCounter from "../Components/Sections/SuccessCounter";
 import SuccessStories from "../Components/Sections/SuccessStories";
 import SectionHeader from "../Components/Shared/SectionHeader";
 import SectionWrapper from "../Components/Shared/SectionWrapper";
+import Title from "../Components/Shared/Title";
 const About = () => {
   return (
     <section className="mb-14 md:mb-20">
+      <Title title="About" />
       <SectionWrapper>
         <SectionHeader title="about Us" />
         <div>
-          <img src="https://i.ibb.co/bmY9g3C/slider-2.jpg" alt="" />
+          <img
+            src="https://unity-mates-server.vercel.app/images/slider-2.jpg"
+            alt=""
+          />
           <p className="text-desc-color text-justify ">
             Unity Mates, a premier matrimony website, pioneers modern
             matchmaking, bringing together individuals in search of life

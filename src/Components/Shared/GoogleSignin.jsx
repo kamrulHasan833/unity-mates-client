@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-const GoogleSignin = ({ text }) => {
+
+const GoogleSignin = ({ text, state }) => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const alert = useAlert();
@@ -24,7 +25,11 @@ const GoogleSignin = ({ text }) => {
         const res2 = await axiosPublic.post("/unity-mates/v1/users", userInfo);
         if (res2.data._id || res2.data.status === 409) {
           alert(`Signed in successfully`, "success");
-          navigate("/");
+          if (!state) {
+            navigate("/");
+          } else {
+            navigate(state);
+          }
         }
       }
     } catch (err) {
@@ -47,6 +52,7 @@ const GoogleSignin = ({ text }) => {
 
 GoogleSignin.propTypes = {
   text: PropTypes.string,
+  state: PropTypes.string,
 };
 
 export default GoogleSignin;

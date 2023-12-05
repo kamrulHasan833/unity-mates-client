@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -8,6 +8,7 @@ import useIsAdminOrPremium from "../../hooks/useIsAdminOrPremium";
 import useSingleBiodataByEmail from "../../hooks/useSingleBiodataByEmail";
 import SectionHeader from "../Shared/SectionHeader";
 const BiodataDetailsLeft = ({ biodata }) => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const alert = useAlert();
   const axiosPrivate = useAxiosPrivate();
@@ -57,6 +58,7 @@ const BiodataDetailsLeft = ({ biodata }) => {
 
       if (res.data._id) {
         alert(`You have added to favourite successfully!`, "success");
+        navigate("/dashboard/favourite-biodatas");
       }
     } catch (err) {
       if (err) {
@@ -65,9 +67,9 @@ const BiodataDetailsLeft = ({ biodata }) => {
     }
   };
   return (
-    <section className="pb-14 md:pb-20">
+    <section className=" lg:pb-20">
       <SectionHeader title="Biodata details" />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <img src={profile_image} alt="" className="w-full" />
         </div>
@@ -146,7 +148,7 @@ const BiodataDetailsLeft = ({ biodata }) => {
               </p>
             </>
           )}
-          <div className="flex flex-col justify-center  gap-4 pt-10">
+          <div className="flex flex-col justify-center  gap-4 pt-6 md:pt-10">
             <button
               className="text-sm md:text-base text-white bg-primary-color capitalize hover:bg-secondary-color px-6 md:px-8 py-1 md:py-2 rounded-full "
               onClick={handleAddToFavourite}

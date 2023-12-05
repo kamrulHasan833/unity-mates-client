@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useDocumentSizes from "../../../hooks/useDocumentSizes";
@@ -36,12 +39,13 @@ const UserHome = () => {
 
   return (
     <section>
+      <Title title="User Home" />
       <SectionWrapperSmall>
         <SectionHeader title="Overall Statistics" />
         {isLoading ? (
-          <p>loading...</p>
+          <LoadingSpiner />
         ) : !isLoading && stats?.length === 0 ? (
-          <p>no data found</p>
+          <Nodata />
         ) : !isLoading && stats ? (
           <>
             <StatsBoxes stats={stats} />

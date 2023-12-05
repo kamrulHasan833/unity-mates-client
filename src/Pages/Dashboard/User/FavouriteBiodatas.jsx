@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
 import Swal from "sweetalert2";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAlert from "../../../hooks/useAlert";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -57,14 +60,15 @@ const FavouriteBiodatas = () => {
   };
   return (
     <section>
+      <Title title="Favourite Biodata" />
       <SectionWrapperSmall>
         <SectionHeader title="My favourite Biodatas" />
-        <div className="overflow-x-auto">
-          {isLoading ? (
-            <p>loading...</p>
-          ) : !isLoading && !favourites.length ? (
-            <p>no users found</p>
-          ) : (
+        {isLoading ? (
+          <LoadingSpiner />
+        ) : !isLoading && !favourites.length ? (
+          <Nodata />
+        ) : (
+          <div className="overflow-x-auto">
             <Table>
               <Table.Head>
                 <Table.HeadCell></Table.HeadCell>
@@ -77,7 +81,7 @@ const FavouriteBiodatas = () => {
               <Table.Body className="divide-y capitalize">
                 {favourites.map(
                   (
-                    { _id, name, biodata_id, permanent_adress, occupation },
+                    { _id, name, biodata_id, permanent_address, occupation },
                     idx
                   ) => (
                     <Table.Row
@@ -91,12 +95,12 @@ const FavouriteBiodatas = () => {
                         {name}
                       </Table.Cell>
                       <Table.Cell>{biodata_id}</Table.Cell>
-                      <Table.Cell>{permanent_adress}</Table.Cell>
+                      <Table.Cell>{permanent_address}</Table.Cell>
                       <Table.Cell>{occupation}</Table.Cell>
                       <Table.Cell>
                         <button
                           onClick={() => handleDelete(_id)}
-                          className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1"
+                          className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1 min-w-[120px]"
                         >
                           Delete
                         </button>
@@ -106,8 +110,8 @@ const FavouriteBiodatas = () => {
                 )}
               </Table.Body>
             </Table>
-          )}
-        </div>
+          </div>
+        )}
       </SectionWrapperSmall>
     </section>
   );

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import Title from "../Components/Shared/Title";
 const NotFound = () => {
   return (
     <div className="w-screen h-screen flex justify-center items-center">
+      <Title title="404 Not found" />
       <div className="text-center ">
         <img
-          src="https://i.ibb.co/B3kQ8q0/404.gif"
+          src={`${location.origin}/404.gif`}
           alt=""
           className="w-60 mb-6 md:mb-10"
         />

@@ -11,7 +11,7 @@ const useSingleBiodataByEmail = () => {
     refetch,
   } = useQuery({
     queryKey: ["biodata"],
-    enabled: !loading && email ? true : false,
+    enabled: !loading,
     queryFn: async () => {
       const res = await axiosPrivate.get(
         `/unity-mates/v1/biodatas/single?email=${email}`

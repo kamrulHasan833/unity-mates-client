@@ -7,10 +7,13 @@ import {
 import SectionHeader from "../Components/Shared/SectionHeader";
 import SectionWrapper from "../Components/Shared/SectionWrapper";
 
+import Title from "../Components/Shared/Title";
 import Signin from "./Signin";
+
 const ContactUs = () => {
   return (
     <section className="mb-14 md:mb-20">
+      <Title title="Contact Us" />
       <SectionWrapper>
         <SectionHeader title="Contact Us" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 md:mb-14">

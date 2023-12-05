@@ -4,6 +4,8 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 import Biodata from "../Shared/Biodata";
+import LoadingSpiner from "../Shared/LoadingSpiner";
+import Nodata from "../Shared/Nodata";
 import SectionHeader from "../Shared/SectionHeader";
 import SectionWrapper from "../Shared/SectionWrapper";
 const PremiumBiodatas = () => {
@@ -26,17 +28,17 @@ const PremiumBiodatas = () => {
     <section>
       <SectionWrapper>
         <SectionHeader title="Premium members" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {isLoading ? (
-            <p>loading...</p>
-          ) : !isLoading && data?.length === 0 ? (
-            <p>no data</p>
-          ) : (
-            data?.map((biodata) => (
+        {isLoading || loading ? (
+          <LoadingSpiner />
+        ) : !isLoading && data?.length === 0 ? (
+          <Nodata />
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {data?.map((biodata) => (
               <Biodata key={biodata._id} biodata={biodata} />
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </SectionWrapper>
     </section>
   );

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import SuccessStories from "../../../Components/Sections/SuccessStories";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAlert from "../../../hooks/useAlert";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 const GotMerried = () => {
@@ -43,6 +44,7 @@ const GotMerried = () => {
   };
   return (
     <section>
+      <Title title="Got Merried" />
       <SectionWrapperSmall>
         <SectionHeader title="Got married" />
 

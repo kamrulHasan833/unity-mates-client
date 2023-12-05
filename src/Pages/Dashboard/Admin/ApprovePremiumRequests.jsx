@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAlert from "../../../hooks/useAlert";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 const ApprovePremiumRequests = () => {
@@ -22,7 +25,6 @@ const ApprovePremiumRequests = () => {
     },
   });
   const handleMakePremium = async (email, name) => {
-    console.log("h");
     try {
       const res = await axiosPrivate.put(
         `/unity-mates/v1/users/type?email=${email}&&premium_request_status=approved`
@@ -38,17 +40,18 @@ const ApprovePremiumRequests = () => {
       }
     }
   };
-  console.log(users);
+
   return (
     <section>
+      <Title title="Premium Request Aproval" />
       <SectionWrapperSmall>
         <SectionHeader title="approved premium request" />
-        <div className="overflow-x-auto">
-          {isLoading ? (
-            <p>loading...</p>
-          ) : !isLoading && !users.length ? (
-            <p>no users found</p>
-          ) : (
+        {isLoading ? (
+          <LoadingSpiner />
+        ) : !isLoading && !users.length ? (
+          <Nodata />
+        ) : (
+          <div className="overflow-x-auto">
             <Table>
               <Table.Head>
                 <Table.HeadCell></Table.HeadCell>
@@ -81,7 +84,7 @@ const ApprovePremiumRequests = () => {
                         {premium_request_status === "pending" ? (
                           <button
                             onClick={() => handleMakePremium(email, name)}
-                            className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1"
+                            className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1 min-w-[120px]"
                           >
                             Make Premium
                           </button>
@@ -94,8 +97,8 @@ const ApprovePremiumRequests = () => {
                 )}
               </Table.Body>
             </Table>
-          )}
-        </div>
+          </div>
+        )}
       </SectionWrapperSmall>
     </section>
   );

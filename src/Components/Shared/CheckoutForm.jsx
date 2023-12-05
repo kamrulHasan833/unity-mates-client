@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -13,7 +13,7 @@ const CheckoutForm = () => {
   const element = useElements();
   const stripe = useStripe();
   const [clientSecret, setClientSecret] = useState(null);
-
+  const navigate = useNavigate();
   const { id } = useParams();
   const { biodata: biodataToRequest } = useSingleBiodata(id);
   const { biodata: myBiodata } = useSingleBiodataByEmail();
@@ -79,6 +79,7 @@ const CheckoutForm = () => {
         );
         if (res.data._id) {
           alert(`You have requested successfully!`, "success");
+          navigate("/dashboard/my-contact-request");
         }
       } catch (err) {
         if (err) {
@@ -97,7 +98,10 @@ const CheckoutForm = () => {
             <div className="form-control">
               <label className="label">
                 <p className="label-text text-desc-color">
-                  <img src="https://i.ibb.co/9svvcLy/cards.png" alt="" />
+                  <img
+                    src="https://unity-mates-server.vercel.app/images/cards.png"
+                    alt=""
+                  />
                 </p>
               </label>
               <div className="border px-4 py-3">

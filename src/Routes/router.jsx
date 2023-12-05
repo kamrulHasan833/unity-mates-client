@@ -5,16 +5,17 @@ import About from "../Pages/About";
 import BiodataDetails from "../Pages/BiodataDetails";
 import Biodatas from "../Pages/Biodatas";
 import ContactUs from "../Pages/ContactUs";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import ApproveCotactRequests from "../Pages/Dashboard/Admin/ApproveCotactRequests";
 import ApprovePremiumRequests from "../Pages/Dashboard/Admin/ApprovePremiumRequests";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import SuccesStoryPage from "../Pages/Dashboard/Admin/SeccessStoryPage";
-import Landing from "../Pages/Dashboard/Common/Landing";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import EditBiodata from "../Pages/Dashboard/User/EditBiodata";
 import FavouriteBiodatas from "../Pages/Dashboard/User/FavouriteBiodatas";
 import GotMerried from "../Pages/Dashboard/User/GotMerried";
 import MyContactRequests from "../Pages/Dashboard/User/MyContactRequests";
+import UserHome from "../Pages/Dashboard/User/UserHome";
 import ViewBiodata from "../Pages/Dashboard/User/ViewBiodata";
 import Home from "../Pages/Home";
 import NotFound from "../Pages/NotFound";
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
     element: <Signin />,
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: (
       <PrivateRoute>
         <Dashboard />
@@ -79,10 +80,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "",
+        path: "user-home",
         element: (
           <PrivateRoute>
-            <Landing />
+            <UserHome />
           </PrivateRoute>
         ),
       },
@@ -129,6 +130,14 @@ const router = createBrowserRouter([
       },
 
       // admin routes
+      {
+        path: "admin-home",
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
+      },
       {
         path: "manage",
         element: (

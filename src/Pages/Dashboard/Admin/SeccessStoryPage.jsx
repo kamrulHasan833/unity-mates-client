@@ -1,7 +1,10 @@
 import { Table } from "flowbite-react";
 import { useState } from "react";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import StoryModal from "../../../Layouts/StoryModal";
 import useSuccessStories from "../../../hooks/useSuccessStories";
 
@@ -12,13 +15,14 @@ const SeccessStoryPage = () => {
 
   return (
     <SectionWrapperSmall>
+      <Title title="Success Story" />
       <SectionHeader title="success stories" />
-      <div className="overflow-x-auto">
-        {isLoading ? (
-          <p>loading...</p>
-        ) : !isLoading && successStories?.length === 0 ? (
-          <p>no users found</p>
-        ) : (
+      {isLoading ? (
+        <LoadingSpiner />
+      ) : !isLoading && successStories?.length === 0 ? (
+        <Nodata />
+      ) : (
+        <div className="overflow-x-auto">
           <Table>
             <Table.Head>
               <Table.HeadCell></Table.HeadCell>
@@ -71,8 +75,8 @@ const SeccessStoryPage = () => {
               )}
             </Table.Body>
           </Table>
-        )}
-      </div>
+        </div>
+      )}
       <StoryModal story={story} />
     </SectionWrapperSmall>
   );

@@ -2,11 +2,13 @@ import Headroom from "react-headroom";
 import { HiBars3 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useIsAdminOrPremium from "../../hooks/useIsAdminOrPremium";
 import NavItem from "../Shared/NavItem";
 import NavbarEnd from "../Shared/NavbarEnd";
 import SectionWrapper from "../Shared/SectionWrapper";
 const Navbar = () => {
   const { user } = useAuth();
+  const { isAdmin } = useIsAdminOrPremium();
 
   const items = (
     <>
@@ -14,7 +16,12 @@ const Navbar = () => {
       <NavItem path="/biodatas" name="Biodatas" />
       <NavItem path="/about" name="About" />
       <NavItem path="/contact" name="Contact Us" />
-      {user && <NavItem path="/dashboard" name="dashboard" />}
+      {user && !isAdmin && (
+        <NavItem path="/dashboard/user-home" name="dashboard" />
+      )}
+      {user && isAdmin && (
+        <NavItem path="/dashboard/admin-home" name="dashboard" />
+      )}
     </>
   );
   return (
@@ -50,7 +57,7 @@ const Navbar = () => {
             </div>
             <Link className="btn btn-ghost text-xl">
               <img
-                src="https://i.ibb.co/QcmSdYT/logo.png"
+                src="https://unity-mates-server.vercel.app/images/logo.png"
                 alt="Unit Mates"
                 className="max-w-[150px] w-full"
               />

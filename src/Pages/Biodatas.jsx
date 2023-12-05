@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import FilterFields from "../Components/Sections/FilterFields";
 import Biodata from "../Components/Shared/Biodata";
+import LoadingSpiner from "../Components/Shared/LoadingSpiner";
+import Nodata from "../Components/Shared/Nodata";
 import SectionHeader from "../Components/Shared/SectionHeader";
 import SectionWrapper from "../Components/Shared/SectionWrapper";
+import Title from "../Components/Shared/Title";
 import useBiodatas from "../hooks/useBiodatas";
 import useDocumentSizes from "../hooks/useDocumentSizes";
 import useQueryBiodatas from "../hooks/useQueryBiodatas";
-
 const Biodatas = () => {
   const { biodatas, setLimit, setSkip, isLoading } = useBiodatas();
   const { queryBiodatas, isLoading: isLoading3, setSting } = useQueryBiodatas();
@@ -53,6 +55,7 @@ const Biodatas = () => {
   ]);
   return (
     <section>
+      <Title title="Biodatas" />
       <SectionWrapper>
         <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-10 pb-10 md:pb-14">
           <div className="col-start-1 col-span-1 ">
@@ -71,12 +74,12 @@ const Biodatas = () => {
               }`}
             />
             {isLoading || isLoading2 || isLoading3 ? (
-              <p>loading...</p>
+              <LoadingSpiner />
             ) : !isLoading &&
               !isLoading2 &&
               !isLoading3 &&
               !currentBiodatas.length ? (
-              <p>no biodatas</p>
+              <Nodata />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {currentBiodatas.map((biodata) => (
@@ -85,9 +88,9 @@ const Biodatas = () => {
               </div>
             )}
             {isLoading2 ? (
-              <p>loading...</p>
+              <LoadingSpiner />
             ) : !isLoading2 && !totalBiodatasSize ? (
-              <p>no biodatas</p>
+              <Nodata />
             ) : !isLoading2 &&
               totalBiodatasSize &&
               selectedOption.value === "all" ? (

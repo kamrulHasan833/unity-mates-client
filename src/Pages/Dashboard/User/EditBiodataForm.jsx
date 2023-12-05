@@ -65,7 +65,7 @@ const EditBiodataForm = ({ biodata, refetch }) => {
   const {
     register,
     handleSubmit,
-    resetField,
+
     formState: { errors },
   } = useForm();
 
@@ -105,8 +105,6 @@ const EditBiodataForm = ({ biodata, refetch }) => {
       expected_partner_weight: checkStrinOrNumber(expectedPartnerWeight),
       biodata_id: biodata_id,
     };
-
-    resetField();
 
     try {
       const { data: result } = await axiosPrivate.post(
@@ -162,7 +160,7 @@ const EditBiodataForm = ({ biodata, refetch }) => {
             type="text"
             placeholder="name"
             defaultValue={profile_image}
-            className="input input-bordered rounded-none  capitalize"
+            className="input input-bordered rounded-none "
             {...register("image", { required: true })}
           />
           {errors.image && (
@@ -484,7 +482,7 @@ const EditBiodataForm = ({ biodata, refetch }) => {
               type="email"
               placeholder="email"
               defaultValue={userEmail}
-              className="input input-bordered rounded-none  capitalize disabled:text-title-color disabled:cursor-pointer"
+              className="input input-bordered rounded-none   disabled:text-title-color disabled:cursor-pointer"
               disabled
             />
           </div>

@@ -3,13 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
+import useIsAdminOrPremium from "../../hooks/useIsAdminOrPremium";
 const NavbarEnd = () => {
   const alert = useAlert();
+
   const { user, loading, logout } = useAuth();
   const { displayName, photoURL } = user ? user : {};
+  const { isAdmin } = useIsAdminOrPremium();
 
   const navigate = useNavigate();
-
+  const avatar = photoURL ? photoURL : `${location.origin}/user-33638_640.png`;
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -41,13 +44,7 @@ const NavbarEnd = () => {
             tabIndex={0}
             className=" m-1 w-10  rounded-full border cursor-pointer"
           >
-            <img
-              src={
-                photoURL ? photoURL : "https://i.ibb.co/6s4PzKR/no-avater.jpg"
-              }
-              alt=""
-              className=" rounded-full "
-            />
+            <img src={avatar} alt="" className=" rounded-full " />
           </div>
           <ul
             tabIndex={0}
@@ -56,15 +53,7 @@ const NavbarEnd = () => {
             <li>
               <div className="flex flex-col   items-center gap-1">
                 <div tabIndex={0} className=" m-1 w-14  rounded-full border ">
-                  <img
-                    src={
-                      photoURL
-                        ? photoURL
-                        : "https://i.ibb.co/vV9hYVf/no-avater.jpg"
-                    }
-                    alt=""
-                    className=" rounded-full "
-                  />
+                  <img src={avatar} alt="" className=" rounded-full " />
                 </div>
                 {displayName && (
                   <h3
@@ -76,9 +65,16 @@ const NavbarEnd = () => {
               </div>
             </li>
             <li>
-              <Link className="text-center block" to="/dashboard">
-                Dashbord
-              </Link>
+              {isAdmin && user && (
+                <Link className="text-center block" to="/dashboard/admin-home">
+                  Dashbord
+                </Link>
+              )}
+              {!isAdmin && user && (
+                <Link className="text-center block" to="/dashboard/user-home">
+                  Dashbord
+                </Link>
+              )}
             </li>
             <li>
               <button

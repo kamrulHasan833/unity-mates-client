@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Table } from "flowbite-react";
+import LoadingSpiner from "../../../Components/Shared/LoadingSpiner";
+import Nodata from "../../../Components/Shared/Nodata";
 import SectionHeader from "../../../Components/Shared/SectionHeader";
 import SectionWrapperSmall from "../../../Components/Shared/SectionWrapperSmall";
+import Title from "../../../Components/Shared/Title";
 import useAlert from "../../../hooks/useAlert";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 const ApproveCotactRequests = () => {
@@ -35,14 +38,15 @@ const ApproveCotactRequests = () => {
   };
   return (
     <section>
+      <Title title="Contact Reqest Approval" />
       <SectionWrapperSmall>
         <SectionHeader title="Approve Contact request" />
 
         {/* table */}
         {isLoading ? (
-          <p>loading..</p>
+          <LoadingSpiner />
         ) : !isLoading && !requests.length ? (
-          <p>no rquests</p>
+          <Nodata />
         ) : (
           <div className="overflow-x-auto">
             <Table striped>
@@ -77,7 +81,7 @@ const ApproveCotactRequests = () => {
                         ) : (
                           <button
                             onClick={() => handleApproved(_id)}
-                            className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1 capitalize"
+                            className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1 capitalize min-w-[120px]"
                           >
                             approve
                           </button>

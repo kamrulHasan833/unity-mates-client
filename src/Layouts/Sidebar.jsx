@@ -14,28 +14,30 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useIsAdminOrPremium from "../hooks/useIsAdminOrPremium";
 
-import Headroom from "react-headroom";
 import { FaUsers, FaUsersViewfinder } from "react-icons/fa6";
 import { FcAbout } from "react-icons/fc";
 import { RiContactsLine } from "react-icons/ri";
 import Swal from "sweetalert2";
+import LoadingSpiner from "../Components/Shared/LoadingSpiner";
 import useAlert from "../hooks/useAlert";
 import useAuth from "../hooks/useAuth";
 
 const Sidebar = () => {
-  const { logout } = useAuth();
+  const { logout, user, loading } = useAuth();
   const navigate = useNavigate();
   const alert = useAlert();
   const data = useIsAdminOrPremium();
   const { isLoading, isAdmin } = data ? data : {};
+  const { displayName, photoURL } = user ? user : {};
+  const avatar = photoURL ? photoURL : `${location.origin}/no-avater.jpg`;
   const mainPath = "/dashboard";
 
   const userItems = [
     {
       id: 1,
       name: "user dashboard",
-      path: `${mainPath}`,
-      icon: <CiUser className="text-2xl md:text-2xl mr-3" />,
+      path: `${mainPath}/user-home`,
+      icon: <CiUser className="text-2xl md:text-2xl " />,
     },
     {
       id: 2,
@@ -72,8 +74,8 @@ const Sidebar = () => {
     {
       id: 1,
       name: "admin dashboard",
-      path: `${mainPath}`,
-      icon: <GrUserAdmin className=" text-base md:text-xl  " />,
+      path: `${mainPath}/admin-home`,
+      icon: <GrUserAdmin className=" text-base md:text-xl" />,
     },
     {
       id: 2,
@@ -156,12 +158,10 @@ const Sidebar = () => {
         {/* Page content here */}
         <label
           htmlFor="my-drawer"
-          className=" btn bg-transparent border-none mt-6 ml-6 md:ml-10 drawer-button xl:hidden"
+          className=" btn bg-transparent border-none mt-6 ml-6 md:ml-10 drawer-button xl:hidden hover:bg-transparent fixed z-20 xl:static"
           title="Open Dashboard"
         >
-          <Headroom style={{ zIndex: 200 }}>
-            <MdDashboard className="text-3xl md:text-4xl text-secondary-color bg-transparent" />
-          </Headroom>
+          <MdDashboard className="text-3xl md:text-4xl text-secondary-color bg-transparent " />
         </label>
       </div>
       <div className="drawer-side z-20">
@@ -173,27 +173,36 @@ const Sidebar = () => {
         <ul className="menu p-4 w-80 min-h-full bg-secondary-color text-base-content font-cinzel xl:fixed">
           {/* Sidebar content here */}
           <li>
-            <Link
-              to="/"
-              className="flex flex-col  text-title-color gap-0 items-start mt-4 mb-6 md:mb-18"
-            >
-              <img
-                src="https://i.ibb.co/QcmSdYT/logo.png"
-                alt=""
-                className="w-4/5"
-              />
-            </Link>
+            {" "}
+            {user && !loading && (
+              <div className={`flex flex-col items-center mb-4 md:mb-6 gap-1 `}>
+                <div
+                  tabIndex={0}
+                  className=" mt-2 w-12  rounded-full border cursor-pointer"
+                >
+                  <img src={avatar} alt="" className=" rounded-full " />
+                </div>
+                {displayName && (
+                  <h3
+                    className={` text-sm text-white font-medium text-center hover:bg-transparent`}
+                  >
+                    {displayName && displayName}
+                  </h3>
+                )}
+              </div>
+            )}
           </li>
+
           {/* user menu items */}
           {isLoading ? (
-            <p>Loading..</p>
+            <LoadingSpiner />
           ) : !isLoading && isAdmin ? (
             adminItems.map(({ id, name, icon, path }) => (
               <li key={id}>
                 <NavLink
                   to={path}
                   className={({ isActive }) =>
-                    `text-base ${
+                    `text-base  ${
                       isActive
                         ? "text-primary-color hover:bg-white hover:bg-opacity-10"
                         : "text-white  hover:bg-white hover:bg-opacity-10"
@@ -224,8 +233,18 @@ const Sidebar = () => {
           )}
 
           <li>
-            {" "}
-            <hr className="rounded-none mt-6 mb-2"></hr>{" "}
+            <div>
+              <Link
+                to="/"
+                className="flex flex-col  text-title-color gap-0 items-start mt-6 md:mt-10 mb-3 "
+              >
+                <img
+                  src="https://unity-mates-server.vercel.app/images/logo.png"
+                  alt=""
+                  className="w-36"
+                />
+              </Link>
+            </div>
           </li>
           {/* common menu items */}
           {commonItems.map(({ id, name, icon, path }) => (

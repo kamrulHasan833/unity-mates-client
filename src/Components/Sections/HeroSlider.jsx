@@ -7,7 +7,7 @@ import SectionWrapperLarge from "../Shared/SectionWrapperLarge";
 const slides = [
   {
     id: 1,
-    image: "https://i.ibb.co/9Zqnkpt/slider-1.jpg",
+    image: "https://unity-mates-server.vercel.app/images/slider-1.jpg",
     title: "Welcome To Unity Mates",
     moto: "Get your fovourite patner",
     btn_text: "Find Patner",
@@ -15,7 +15,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "https://i.ibb.co/bmY9g3C/slider-2.jpg",
+    image: "https://unity-mates-server.vercel.app/images/slider-2.jpg",
     title: "Happy Couple",
     moto: "A best life patner make your life whishes",
     btn_text: "Find Patner",

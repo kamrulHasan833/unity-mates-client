@@ -25,30 +25,30 @@ const Biodata = ({ biodata }) => {
       </div>
       <div>
         <div className="flex justify-between pt-1 md:pt-2">
-          <h3 className="font-semibold capitalize text-desc-color">
+          <h3 className="text-sm  font-semibold capitalize text-desc-color">
             Biodata id: <span className="font-normal">{biodata_id}</span>
           </h3>
-          <h3 className="font-semibold capitalize text-3xl  text-orange-400">
+          <h3 className="font-semibold capitalize text-xl  text-orange-400">
             {member_type === "premium" && <MdOutlineWorkspacePremium />}
           </h3>
         </div>
-        <p className="font-semibold capitalize text-desc-color">
+        <p className="text-sm  font-semibold capitalize text-desc-color">
           Age: <span className="font-normal">{age}</span>
         </p>
-        <p className="font-semibold capitalize text-desc-color">
+        <p className="text-sm  font-semibold capitalize text-desc-color">
           Biodata Type: <span className="font-normal">{biodata_type}</span>
         </p>
 
-        <p className="font-semibold capitalize text-desc-color">
+        <p className="text-sm  font-semibold capitalize text-desc-color">
           Division:{" "}
           <span className="font-normal">{permanent_division_name}</span>
         </p>
-        <p className="font-semibold capitalize text-desc-color">
+        <p className="text-sm  font-semibold capitalize text-desc-color">
           Occupation: <span className="font-normal">{occupation} </span>
         </p>
         <Link
           to={`/biodata-details/${_id}`}
-          className="text-sm md:text-base bg-secondary-color hover:bg-primary-color text-white px-4 md:px-6 py-1 md:py-2 rounded-full mt-4 inline-block"
+          className=" md:text-xs bg-secondary-color hover:bg-primary-color text-white px-4 py-1  rounded-full mt-4 inline-block"
         >
           View Profile
         </Link>

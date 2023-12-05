@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="mb-6 md:mb-0">
             <Link to="/" className="flex items-center">
               <img
-                src="https://i.ibb.co/QcmSdYT/logo.png"
+                src="https://unity-mates-server.vercel.app/images/logo.png"
                 className="mr-3 w-48 "
                 alt="logo"
               />

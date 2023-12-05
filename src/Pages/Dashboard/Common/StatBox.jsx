@@ -22,13 +22,13 @@ const StatBox = ({ stat }) => {
           <FaUserFriends className="text-5xl text-secondary-color" />
         ) : isMaleBiodata ? (
           <img
-            src="https://i.ibb.co/B46rvYG/male.jpg"
+            src="https://unity-mates-server.vercel.app/images/male.jpg"
             alt=""
             className="rounded-full w-16 h-16"
           />
         ) : isFemaleBiodata ? (
           <img
-            src="https://i.ibb.co/yf5cBjt/female.png"
+            src="https://unity-mates-server.vercel.app/images/female.png"
             alt=""
             className="rounded-full w-16 h-16"
           />
@@ -36,7 +36,7 @@ const StatBox = ({ stat }) => {
           <MdOutlineWorkspacePremium className="text-5xl text-orange-400" />
         ) : isMarriage ? (
           <img
-            src="https://i.ibb.co/VqXL823/couple.jpg"
+            src="https://unity-mates-server.vercel.app/images/couple.jpg"
             alt=""
             className="rounded-full w-16 h-16"
           />
