@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import BiodataDetailsLeft from "../Components/Sections/BiodataDetailsLeft";
 import BiodataDetailsRight from "../Components/Sections/BiodataDetailsRight";
 import SuccessStories from "../Components/Sections/SuccessStories";
+import ViewedBiodatas from "../Components/Sections/ViewedBiodatas";
 import LoadingSpiner from "../Components/Shared/LoadingSpiner";
 import Nodata from "../Components/Shared/Nodata";
 import SectionWrapper from "../Components/Shared/SectionWrapper";
@@ -32,6 +33,7 @@ const BiodataDetails = () => {
           </div>
         )}
       </SectionWrapper>
+      <ViewedBiodatas />
       <SuccessStories />
     </main>
   );

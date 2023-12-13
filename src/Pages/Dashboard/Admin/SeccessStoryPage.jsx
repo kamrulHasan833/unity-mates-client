@@ -67,7 +67,7 @@ const SeccessStoryPage = () => {
                         }}
                         className="bg-primary-color text-white hover:bg-secondary-color rounded-sm  px-3 py-1"
                       >
-                        View Sory
+                        View Story
                       </button>
                     </Table.Cell>
                   </Table.Row>

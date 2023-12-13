@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
+import { PiPlayCircleThin } from "react-icons/pi";
+
 import { Link } from "react-router-dom";
+import usePlay from "../../hooks/usePlay";
 
 const HeroSlide = ({ slide }) => {
   const { image, title, moto, path, btn_text } = slide;
+  const { handlePlay } = usePlay();
   return (
     <div className="relative">
       <img
@@ -29,13 +33,29 @@ const HeroSlide = ({ slide }) => {
           >
             {moto}
           </p>
-          <div data-aos="fade-up" data-aos-duration="1200">
-            <Link
-              className="text-white text-sm uppercase hover:bg-secondary-color md:text-base bg-primary-color px-6 md:px-10 py-2 md:py-3 rounded-full"
-              to={path}
-            >
-              {btn_text}
-            </Link>
+          <div
+            className="flex gap-6 items-center"
+            data-aos="fade-up"
+            data-aos-duration="1200"
+          >
+            <div>
+              <Link
+                className="text-white text-sm uppercase hover:bg-secondary-color md:text-base bg-primary-color px-6 md:px-10 py-2 md:py-3 rounded-full"
+                to={path}
+              >
+                {btn_text}
+              </Link>
+            </div>
+            <div>
+              <button
+                onClick={() => {
+                  document.getElementById("my_modal_2").showModal();
+                  handlePlay(true);
+                }}
+              >
+                <PiPlayCircleThin className="text-5xl md:text-7xl text-primary-color hover:text-secondary-color" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import HeroSlide from "../Shared/HeroSlide";
 import SectionWrapperLarge from "../Shared/SectionWrapperLarge";
+import VideoModal from "./VideoModal";
 const slides = [
   {
     id: 1,
@@ -24,25 +25,25 @@ const slides = [
 ];
 const HeroSlider = () => {
   return (
-    <SectionWrapperLarge>
-      <Swiper
-        navigation={true}
-        modules={[Navigation, Autoplay, Pagination]}
-        loop={true}
-        pagination={{ clickable: true }}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        className="mySwiper hero-swiper"
-      >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            {({ isActive }) => isActive && <HeroSlide slide={slide} />}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </SectionWrapperLarge>
+    <>
+      <SectionWrapperLarge>
+        <Swiper
+          navigation={true}
+          modules={[Navigation, Autoplay, Pagination]}
+          loop={true}
+          pagination={{ clickable: true }}
+          className="mySwiper hero-swiper"
+        >
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              {({ isActive }) => isActive && <HeroSlide slide={slide} />}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </SectionWrapperLarge>
+
+      <VideoModal />
+    </>
   );
 };
 
